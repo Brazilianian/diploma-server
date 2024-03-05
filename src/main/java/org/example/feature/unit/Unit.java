@@ -6,6 +6,7 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.example.entity.AbstractBaseEntity;
+import org.example.feature.user.User;
 import org.example.feature.geo.Point;
 import org.example.feature.order.Order;
 
@@ -32,4 +33,8 @@ public class Unit extends AbstractBaseEntity {
     // історія замовлень
     @OneToMany
     private List<Order> ordersHistory = new ArrayList<>();
+
+    // користувачі підрозділу
+    @OneToMany
+    private List<User> users = new ArrayList<>();
 }
