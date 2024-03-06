@@ -1,4 +1,4 @@
-package org.example.feature.geo;
+package org.example.feature.geo.point;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

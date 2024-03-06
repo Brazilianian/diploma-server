@@ -3,6 +3,7 @@ package org.example.feature.order;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.entity.AbstractBaseEntity;
+import org.example.feature.order_details.OrderDetails;
 import org.example.feature.unit.Unit;
 
 

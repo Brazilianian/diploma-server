@@ -1,11 +1,12 @@
-package org.example.feature.order;
+package org.example.feature.order_details;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.example.entity.AbstractBaseEntity;
-import org.example.feature.geo.Point;
+import org.example.feature.geo.point.Point;
+import org.example.feature.order.Order;
 
 import java.time.LocalDateTime;
 
