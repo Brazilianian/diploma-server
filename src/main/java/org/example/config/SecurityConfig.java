@@ -26,7 +26,7 @@ public class SecurityConfig {
     private final LogoutHandler logoutHandler;
 
     private static final String[] WHITE_LIST_URL = {
-            "/*",
+            "/**",
             "/api/v1/auth/*",
             "/configuration/ui",
             "/configuration/security",

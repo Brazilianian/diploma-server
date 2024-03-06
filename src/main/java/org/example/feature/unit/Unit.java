@@ -1,9 +1,6 @@
 package org.example.feature.unit;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 import org.example.entity.AbstractBaseEntity;
 import org.example.feature.user.User;
@@ -24,7 +21,7 @@ import java.util.UUID;
 public class Unit extends AbstractBaseEntity {
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Point location;
 
     // поточні замовлення
@@ -36,7 +33,7 @@ public class Unit extends AbstractBaseEntity {
     private List<Order> ordersHistory = new ArrayList<>();
 
     // користувачі підрозділу
-    @OneToMany
+    @ManyToMany
     private List<User> users = new ArrayList<>();
 
     public Unit(UUID id, String name, Point location, List<Order> orders, List<Order> ordersHistory, List<User> users) {
