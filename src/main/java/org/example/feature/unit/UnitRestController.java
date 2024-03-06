@@ -24,7 +24,6 @@ public class UnitRestController {
     private final UnitMapper unitMapper;
     private final UnitService unitService;
     private final UserService userService;
-    private final PasswordEncoder passwordEncoder;
 
     @GetMapping
     @ResponseBody
@@ -57,5 +56,11 @@ public class UnitRestController {
 
         unit = unitService.createUnit(unit, user);
         return unitMapper.fromObjectToDto(unit);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUnit(@PathVariable("id") String id) {
+        unitService.deleteUnitById(UUID.fromString(id));
     }
 }

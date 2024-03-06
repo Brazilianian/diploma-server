@@ -36,4 +36,21 @@ public class UnitService {
         );
         return savedUnit;
     }
+
+    public void deleteUnitById(UUID id) {
+        if (!isUnitExistsById(id)) {
+            throw new UnitWasNotFoundException(
+                    String.format("Failed to delete unit. Unit with id '%s' was not found", id)
+            );
+        }
+
+        unitRepository.deleteById(id);
+        LOGGER.info(String.format(
+                "Unit with id '%s' was successfully deleted", id
+        ));
+    }
+
+    private boolean isUnitExistsById(UUID uuid) {
+        return unitRepository.existsById(uuid);
+    }
 }
