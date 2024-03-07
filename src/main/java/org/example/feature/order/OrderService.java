@@ -1,8 +1,8 @@
 package org.example.feature.order;
 
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Or;
 import org.example.feature.order.exception.OrderWasNotFoundException;
+import org.example.feature.order_details.OrderDetailsService;
 import org.example.feature.unit.Unit;
 import org.example.feature.unit.UnitService;
 import org.slf4j.Logger;
@@ -16,12 +16,16 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
     private final OrderRepository orderRepository;
     private final UnitService unitService;
+    private final OrderDetailsService orderDetailsService;
+
+    private final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
 
     public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+        return orderRepository.findAll()
+                .stream().filter(os -> !os.getOrderStatus().equals(OrderStatus.CANCELED))
+                .toList();
     }
 
     public Order getOrderById(UUID id) {
@@ -38,6 +42,7 @@ public class OrderService {
 
         order.setUnit(unit);
         order.setOrderStatus(OrderStatus.PENDING);
+        order.setOrderDetails(orderDetailsService.createOrderDetails(order.getOrderDetails()));
 
         Order savedOrder = orderRepository.save(order);
 
@@ -52,14 +57,16 @@ public class OrderService {
     }
 
     public void deleteOrderById(UUID id) {
-        if (!isOrderExistsById(id)) {
-            throw new OrderWasNotFoundException(
-                    String.format(
-                            "Failed to delete order. Order with id '%s' was not found", id
-                    ));
-        }
+        Order order = getOrderById(id);
 
-        orderRepository.deleteById(id);
+        Unit unit = unitService.getUnitById(order.getUnit().getId());
+        unit.getOrders().remove(order);
+        unit.getOrdersHistory().add(order);
+        unitService.updateUnit(unit);
+
+        order.setOrderStatus(OrderStatus.CANCELED);
+        orderRepository.save(order);
+        LOGGER.info(String.format("Order status for order '%s' was changed to CANCELED", id));
     }
 
     private boolean isOrderExistsById(UUID id) {

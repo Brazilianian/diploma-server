@@ -15,4 +15,15 @@ import org.example.entity.AbstractBaseEntity;
 public class Point extends AbstractBaseEntity {
     private double latitude;
     private double longitude;
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + getId() +
+                ",latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", createdAt=" + getCreatedAt() +
+                ", updatedAt=" + getUpdatedAt() +
+                '}';
+    }
 }

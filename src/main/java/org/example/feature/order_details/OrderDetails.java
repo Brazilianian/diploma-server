@@ -1,5 +1,6 @@
 package org.example.feature.order_details;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -18,15 +19,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "order_details")
 public class OrderDetails extends AbstractBaseEntity {
-    @OneToOne
-    private Order order;
-
     // Звідки
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Point pointFrom;
 
     // Куди
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Point pointTo;
 
     // До коли діставити
@@ -38,5 +36,18 @@ public class OrderDetails extends AbstractBaseEntity {
         this.pointFrom = pointFrom;
         this.pointTo = pointTo;
         this.dateTimeTo = dateTimeTo;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDetails{" +
+                "id=" + getId() +
+                ", createdAt=" + getCreatedAt() +
+                ", updatedAt=" + getUpdatedAt() +
+                ", pointFrom=" + pointFrom +
+                ", pointTo=" + pointTo +
+                ", dateTimeTo=" + dateTimeTo +
+                ", distance=" + distance +
+                '}';
     }
 }

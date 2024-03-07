@@ -16,13 +16,13 @@ import org.example.feature.unit.Unit;
 @Table(name = "orders")
 public class Order extends AbstractBaseEntity {
     // Замовник
-    @OneToOne
+    @ManyToOne
     private Unit unit;
 
     @Enumerated(EnumType.ORDINAL)
     private OrderStatus orderStatus;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private OrderDetails orderDetails;
 
     public Order(Unit unit, OrderDetails orderDetails) {
