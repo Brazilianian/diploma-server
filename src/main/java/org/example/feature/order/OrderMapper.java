@@ -1,7 +1,10 @@
 package org.example.feature.order;
 
 import lombok.RequiredArgsConstructor;
+import org.example.feature.order.dto.OrderCreateRequestDto;
+import org.example.feature.order.dto.OrderDto;
 import org.example.feature.order_details.OrderDetailsMapper;
+import org.example.feature.unit.Unit;
 import org.example.mapper.IMapper;
 import org.springframework.stereotype.Service;
 
@@ -44,5 +47,12 @@ public class OrderMapper implements IMapper<Order, OrderDto> {
     @Override
     public List<OrderDto> fromObjectListToDtoList(List<Order> objectList) {
         return objectList.stream().map(this::fromObjectToDto).toList();
+    }
+
+    public Order fromCreateRequestDtoToObject(OrderCreateRequestDto orderCreateRequestDto) {
+        return new Order(
+                new Unit(orderCreateRequestDto.unitId()),
+                orderDetailsMapper.fromCreateRequestDtoToObject(orderCreateRequestDto.orderDetailsCreateRequestDto())
+        );
     }
 }

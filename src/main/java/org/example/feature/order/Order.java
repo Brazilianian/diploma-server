@@ -24,4 +24,21 @@ public class Order extends AbstractBaseEntity {
 
     @OneToOne
     private OrderDetails orderDetails;
+
+    public Order(Unit unit, OrderDetails orderDetails) {
+        this.unit = unit;
+        this.orderDetails = orderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + getId() +
+                "unitId=" + unit.getId() +
+                ", orderStatus=" + orderStatus +
+                ", orderDetails=" + orderDetails +
+                ", createdAt=" + getCreatedAt() +
+                ", updatedAt=" + getUpdatedAt() +
+                '}';
+    }
 }

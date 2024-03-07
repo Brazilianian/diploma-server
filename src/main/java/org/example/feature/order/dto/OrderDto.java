@@ -1,6 +1,7 @@
-package org.example.feature.order;
+package org.example.feature.order.dto;
 
-import org.example.feature.order_details.OrderDetailsDto;
+import org.example.feature.order.OrderStatus;
+import org.example.feature.order_details.dto.OrderDetailsDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

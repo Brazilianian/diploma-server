@@ -34,4 +34,9 @@ public class OrderDetails extends AbstractBaseEntity {
 
     private double distance;
 
+    public OrderDetails(Point pointFrom, Point pointTo, LocalDateTime dateTimeTo) {
+        this.pointFrom = pointFrom;
+        this.pointTo = pointTo;
+        this.dateTimeTo = dateTimeTo;
+    }
 }

@@ -53,4 +53,11 @@ public class UnitService {
     private boolean isUnitExistsById(UUID uuid) {
         return unitRepository.existsById(uuid);
     }
+
+    public void updateUnit(Unit unit) {
+        Unit updatedUnit = unitRepository.save(unit);
+        LOGGER.info(String.format(
+                "Unit %s was successfully updated", unit
+        ));
+    }
 }

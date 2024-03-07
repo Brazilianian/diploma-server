@@ -1,4 +1,4 @@
-package org.example.feature.order_details;
+package org.example.feature.order_details.dto;
 
 import org.example.feature.geo.point.PointDto;
 

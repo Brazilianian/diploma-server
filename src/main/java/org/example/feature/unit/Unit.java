@@ -36,6 +36,10 @@ public class Unit extends AbstractBaseEntity {
     @ManyToMany
     private List<User> users = new ArrayList<>();
 
+    public Unit(UUID id) {
+        super(id);
+    }
+
     public Unit(UUID id, String name, Point location, List<Order> orders, List<Order> ordersHistory, List<User> users) {
         super(id);
         this.name = name;
