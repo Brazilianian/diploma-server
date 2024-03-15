@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.*;
 
 @RestController
@@ -42,7 +43,8 @@ public class UnitRestController {
     @PostMapping
     @ResponseBody
     @ResponseStatus(HttpStatus.CREATED)
-    public UnitDto createUnit(@RequestBody @Valid UnitCreateRequestDto unitCreateRequestDto,
+    public UnitDto createUnit(Principal principal,
+                              @RequestBody @Valid UnitCreateRequestDto unitCreateRequestDto,
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ValidationUtil.getErrors(bindingResult);
@@ -51,8 +53,7 @@ public class UnitRestController {
 
         Unit unit = unitMapper.fromCreateRequestDtoToObject(unitCreateRequestDto);
 
-        // TODO: pass user through function
-        User user = userService.getRandomUser();
+        User user = userService.getUserFromUserPrincipal(principal);
 
         unit = unitService.createUnit(unit, user);
         return unitMapper.fromObjectToDto(unit);

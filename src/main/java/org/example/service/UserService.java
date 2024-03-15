@@ -23,7 +23,7 @@ public class UserService {
     public User createUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new UserAlreadyExistsException(
-                    String.format("Failed to create user. User with email %s already exists", user.getEmail())
+                    String.format("Не вдалося створити користувача. Користувач з електронною поштою %s вже існує.", user.getEmail())
             );
         }
 
@@ -37,14 +37,5 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
-    }
-
-    public User getRandomUser() {
-        List<User> users = getAllUsers();
-        if (users.isEmpty()) {
-            User user = new User("random", "random", "email", passwordEncoder.encode("password"), Role.USER, new ArrayList<>());
-            return createUser(user);
-        }
-        return users.getFirst();
     }
 }
