@@ -36,7 +36,8 @@ public class AuthRestController {
                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ValidationUtil.getErrors(bindingResult);
-            throw new ValidationException("Failed to register new user", errors);
+            throw new ValidationException("\n" +
+                    "Не вдалося зареєструвати нового користувача.", errors);
         }
 
         User user = userMapper.fromCreateRequestDtoToObject(userCreateRequestDto);

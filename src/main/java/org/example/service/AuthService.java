@@ -34,7 +34,8 @@ public class AuthService {
 
         User user = userRepository.findByEmail(request.email())
                 .orElseThrow(() -> new UserWasNotFoundException(
-                        String.format("Failed to authenticate. User with email %s was not found", request.email())
+                        String.format("\n" +
+                                "Не вдалося автентифікуватися. Користувач з електронною поштою %s не знайдений.", request.email())
                 ));
         String jwtToken = jwtService.generateToken(user);
         String refreshToken = jwtService.generateRefreshToken(user);
@@ -57,7 +58,7 @@ public class AuthService {
         if (userEmail != null) {
             User user = userRepository.findByEmail(userEmail)
                     .orElseThrow(() -> new UserWasNotFoundException(
-                            String.format("Failed to refresh token. User with email %s was not found", userEmail)));
+                            String.format("Не вдалося оновити токен. Користувач з електронною поштою %s не знайдений.", userEmail)));
             if (jwtService.isTokenValid(refreshToken, user)) {
                 String accessToken = jwtService.generateToken(user);
                 tokenService.revokeAllUserTokens(user);
