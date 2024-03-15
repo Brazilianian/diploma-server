@@ -1,4 +1,4 @@
-package org.example.dto.auth.response;
+package org.example.feature.auth.dto;
 
 public record AuthResponseDto(
         String accessToken,
