@@ -48,7 +48,7 @@ public class UnitRestController {
                               BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ValidationUtil.getErrors(bindingResult);
-            throw new ValidationException("Failed to create unit", errors);
+            throw new ValidationException("Не вдалося створити підрозділ", errors);
         }
 
         Unit unit = unitMapper.fromCreateRequestDtoToObject(unitCreateRequestDto);

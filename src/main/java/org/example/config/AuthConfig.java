@@ -25,7 +25,7 @@ public class AuthConfig {
     public UserDetailsService userDetailsService() {
         return username -> userRepository.findByEmail(username)
                 .orElseThrow(() -> new UserWasNotFoundException(
-                        String.format("User with email %s was not found", username)
+                        String.format("Користувача з електронною поштою %s не знайдено.", username)
                 ));
     }
 

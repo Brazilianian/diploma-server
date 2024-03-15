@@ -32,7 +32,7 @@ public class OrderService {
         return orderRepository.findById(id)
                 .orElseThrow(() -> new OrderWasNotFoundException(
                         String.format(
-                                "Order with id '%s' was not found", id
+                                "Замовлення з ідентифікатором '%s' не знайдено", id
                         )
                 ));
     }

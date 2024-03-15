@@ -43,7 +43,7 @@ public class OrderRestController {
                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             Map<String, String> errors = ValidationUtil.getErrors(bindingResult);
-            throw new ValidationException("Failed to create new order", errors);
+            throw new ValidationException("Не вдалося створити нове замовлення.", errors);
         }
 
         Order order = orderMapper.fromCreateRequestDtoToObject(orderCreateRequestDto);

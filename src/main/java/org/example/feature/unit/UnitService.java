@@ -24,7 +24,7 @@ public class UnitService {
     public Unit getUnitById(UUID id) {
         return unitRepository.findById(id)
                 .orElseThrow(() -> new UnitWasNotFoundException(
-                        String.format("Unit with id '%s' was not found", id)
+                        String.format("Підрозділ з ідентифікатором '%s' не знайдено.", id)
                 ));
     }
 
@@ -32,7 +32,7 @@ public class UnitService {
         unit.getUsers().add(user);
         Unit savedUnit = unitRepository.save(unit);
         LOGGER.info(
-                String.format("Unit %s was saved", savedUnit)
+                String.format("Підрозділ %s було збережено.", savedUnit)
         );
         return savedUnit;
     }
@@ -40,7 +40,7 @@ public class UnitService {
     public void deleteUnitById(UUID id) {
         if (!isUnitExistsById(id)) {
             throw new UnitWasNotFoundException(
-                    String.format("Failed to delete unit. Unit with id '%s' was not found", id)
+                    String.format("Не вдалося видалити підрозділ. Підрозділ з ідентифікатором '%s' не знайдено.", id)
             );
         }
 

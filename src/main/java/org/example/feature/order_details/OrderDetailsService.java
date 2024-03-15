@@ -24,7 +24,7 @@ public class OrderDetailsService {
         OrderDetails createdOrderDetails = orderDetailsRepository.save(orderDetails);
         LOGGER.info(
                 String.format(
-                        "Order Details %s was successfully created", createdOrderDetails
+                        "Деталі замовлення %s успішно створено", createdOrderDetails
                 )
         );
         return createdOrderDetails;
