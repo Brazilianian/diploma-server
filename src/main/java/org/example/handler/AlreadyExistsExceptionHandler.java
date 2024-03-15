@@ -1,6 +1,6 @@
 package org.example.handler;
 
-import org.example.dto.exception.ExceptionDto;
+import org.example.dto.ExceptionDto;
 import org.example.exception.AbstractAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

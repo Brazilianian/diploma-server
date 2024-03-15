@@ -1,6 +1,6 @@
 package org.example.handler;
 
-import org.example.dto.exception.ValidationDto;
+import org.example.dto.ValidationDto;
 import org.example.exception.ValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

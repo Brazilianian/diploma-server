@@ -1,7 +1,6 @@
 package org.example.handler;
 
-import io.jsonwebtoken.ExpiredJwtException;
-import org.example.dto.exception.ExceptionDto;
+import org.example.dto.ExceptionDto;
 import org.example.exception.AbstractWasNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

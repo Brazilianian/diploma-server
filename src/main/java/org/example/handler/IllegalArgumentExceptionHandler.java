@@ -1,7 +1,6 @@
 package org.example.handler;
 
-import org.example.dto.exception.ExceptionDto;
-import org.example.dto.exception.ValidationDto;
+import org.example.dto.ExceptionDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

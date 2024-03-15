@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.example.dto.exception.ExceptionDto;
+import org.example.dto.ExceptionDto;
 import org.example.feature.auth.token.TokenRepository;
 import org.example.service.JwtService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
