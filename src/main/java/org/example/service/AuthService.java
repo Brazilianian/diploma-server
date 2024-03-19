@@ -6,7 +6,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.example.feature.auth.dto.AuthRequestDto;
 import org.example.feature.auth.dto.AuthResponseDto;
+import org.example.feature.auth.dto.TokensDto;
 import org.example.feature.user.User;
+import org.example.feature.user.UserMapper;
 import org.springframework.http.HttpHeaders;
 import org.example.feature.user.UserRepository;
 import org.example.feature.user.exception.UserWasNotFoundException;
@@ -24,6 +26,7 @@ public class AuthService {
     private final TokenService tokenService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserMapper userMapper;
 
     public AuthResponseDto authenticate(AuthRequestDto request) {
         authenticationManager.authenticate(
@@ -42,7 +45,9 @@ public class AuthService {
         tokenService.revokeAllUserTokens(user);
         tokenService.saveUserToken(user, jwtToken);
 
-        return new AuthResponseDto(jwtToken, refreshToken);
+        return new AuthResponseDto(
+                userMapper.fromObjectToDto(user),
+                new TokensDto(jwtToken, refreshToken));
     }
 
     public void refresh(HttpServletRequest request, HttpServletResponse response)  throws IOException {
@@ -62,7 +67,9 @@ public class AuthService {
                 String accessToken = jwtService.generateToken(user);
                 tokenService.revokeAllUserTokens(user);
                 tokenService.saveUserToken(user, accessToken);
-                AuthResponseDto authResponse = new AuthResponseDto(accessToken, refreshToken);
+                AuthResponseDto authResponse = new AuthResponseDto(
+                        userMapper.fromObjectToDto(user),
+                        new TokensDto(accessToken, refreshToken));
                 new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
             }
         }

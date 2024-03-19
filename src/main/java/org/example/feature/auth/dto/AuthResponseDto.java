@@ -1,7 +1,9 @@
 package org.example.feature.auth.dto;
 
+import org.example.feature.user.dto.UserDto;
+
 public record AuthResponseDto(
-        String accessToken,
-        String refreshToken
+        UserDto userDto,
+        TokensDto tokensDto
 ) {
 }
