@@ -23,6 +23,7 @@ public class UserMapper implements IMapper<User, UserDto> {
                 user.getId(),
                 user.getFirstName(),
                 user.getLastName(),
+                user.getRole(),
                 user.getEmail(),
                 user.getCreatedAt(),
                 user.getUpdatedAt()
