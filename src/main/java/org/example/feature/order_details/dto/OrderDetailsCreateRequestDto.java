@@ -8,14 +8,14 @@ import org.example.feature.geo.point.dto.PointCreateRequestDto;
 import java.time.LocalDateTime;
 
 public record OrderDetailsCreateRequestDto(
-        @NotNull(message = "Start location must be present")
+        @NotNull(message = "Вкажіть точку старту")
         @Valid
         PointCreateRequestDto pointFrom,
-        @NotNull(message = "Finish location must be presented")
+        @NotNull(message = "Вкажіть місце прибуття")
         @Valid
         PointCreateRequestDto pointTo,
-        @NotNull(message = "Deadline date must be presented")
-        @FutureOrPresent(message = "Deadline date can't be in past")
+        @NotNull(message = "Дата прибуття не може бути пустою")
+        @FutureOrPresent(message = "Дата на може бути минулою")
         LocalDateTime dateTimeTo
 ) {
 }

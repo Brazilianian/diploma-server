@@ -5,10 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import org.example.feature.geo.point.dto.PointCreateRequestDto;
 
 public record UnitCreateRequestDto(
-        @NotNull(message = "Name of unit must be presented")
+        @NotNull(message = "Назва підрозділу не може бути пустою")
         String name,
         @Valid
-        @NotNull(message = "Location of unit must be presented")
+        @NotNull(message = "Вкажіть місцезнаходження частини")
         PointCreateRequestDto location
 ) {
 }
