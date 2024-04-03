@@ -1,6 +1,7 @@
 package org.example.feature.unit.dto;
 
-import org.example.feature.geo.point.PointDto;
+import org.example.feature.geo.point.dto.PointDto;
+import org.example.feature.image.dto.ImageDto;
 import org.example.feature.user.dto.UserDto;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public record UnitDto(UUID uuid,
                       PointDto location,
                       List<UUID> ordersId,
                       List<UUID> ordersHistoryId,
-                      List<UserDto> users
+                      List<UserDto> users,
+                      ImageDto image
 ) {
 }

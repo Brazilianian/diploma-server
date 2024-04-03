@@ -5,7 +5,7 @@ spring:
   application:
     name: diploma-server
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_NAME}
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_NAME}?sessionVariables=sql_mode='NO_ENGINE_SUBSTITUTION'&jdbcCompliantTruncation=false
     username: ${MYSQL_USERNAME}
     password: ${MYSQL_PASSWORD}
   jpa:

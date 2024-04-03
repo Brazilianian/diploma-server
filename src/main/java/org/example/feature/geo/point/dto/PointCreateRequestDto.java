@@ -7,8 +7,8 @@ public record PointCreateRequestDto(
         @Min(value = -90, message = "Latitude must be in rage of [-90; 90]")
         @Max(value = 90, message = "Latitude must be in rage of [-90; 90]")
         double latitude,
-        @Min(value = -90, message = "Longitude must be in rage of [-90; 90]")
-        @Max(value = 90, message = "Longitude must be in rage of [-90; 90]")
+        @Min(value = -180, message = "Longitude must be in rage of [-90; 90]")
+        @Max(value = 180, message = "Longitude must be in rage of [-90; 90]")
         double longitude
 ) {
 }

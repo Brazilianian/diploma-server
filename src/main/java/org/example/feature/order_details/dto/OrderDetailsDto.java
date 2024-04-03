@@ -1,6 +1,6 @@
 package org.example.feature.order_details.dto;
 
-import org.example.feature.geo.point.PointDto;
+import org.example.feature.geo.point.dto.PointDto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

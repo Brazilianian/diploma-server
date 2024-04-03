@@ -1,6 +1,7 @@
 package org.example.feature.unit;
 
 import lombok.RequiredArgsConstructor;
+import org.example.feature.image.ImageService;
 import org.example.feature.unit.exception.UnitWasNotFoundException;
 import org.example.feature.user.User;
 import org.slf4j.Logger;
@@ -13,6 +14,8 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class UnitService {
+
+    private final ImageService imageService;
 
     private final UnitRepository unitRepository;
     private final Logger LOGGER = LoggerFactory.getLogger(UnitService.class);
@@ -30,6 +33,7 @@ public class UnitService {
 
     public Unit createUnit(Unit unit, User user) {
         unit.getUsers().add(user);
+        unit.setImage(imageService.createImage(unit.getImage()));
         Unit savedUnit = unitRepository.save(unit);
         LOGGER.info(
                 String.format("Підрозділ %s було збережено.", savedUnit)

@@ -1,8 +1,8 @@
 package org.example.feature.geo.point;
 
 import org.example.feature.geo.point.dto.PointCreateRequestDto;
+import org.example.feature.geo.point.dto.PointDto;
 import org.example.mapper.IMapper;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

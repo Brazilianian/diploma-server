@@ -1,4 +1,4 @@
-package org.example.feature.geo.point;
+package org.example.feature.geo.point.dto;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
