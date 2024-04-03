@@ -40,5 +40,5 @@ build/
 
 logs
 
-/src/main/resources/images
-!/src/main/resources/images/README.md
+/src/main/resources/data
+!/src/main/resources/data/README.md
