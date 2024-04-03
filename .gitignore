@@ -39,3 +39,6 @@ build/
 .DS_Store
 
 logs
+
+/src/main/resources/images
+!/src/main/resources/images/README.md

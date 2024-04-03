@@ -16,7 +16,9 @@ public class ValidationExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<ValidationDto> catchValidationException(ValidationException ex) {
-        LOGGER.warn(ex.getMessage());
+        LOGGER.warn(
+                String.format("%s. %s", ex.getMessage(), ex.getErrors())
+        );
         return new ResponseEntity<>(
                 new ValidationDto(ex.getMessage(), ex.getErrors()),
                 HttpStatus.UNPROCESSABLE_ENTITY
