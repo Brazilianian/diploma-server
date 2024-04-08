@@ -10,6 +10,7 @@ import org.example.feature.image.dto.ImageDto;
 public record UnitCreateRequestDto(
         @NotNull(message = "Назва підрозділу не може бути пустою")
         String name,
+        String description,
         @Valid
         @NotNull(message = "Вкажіть місцезнаходження частини")
         PointCreateRequestDto location,

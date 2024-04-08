@@ -31,8 +31,9 @@ public class UnitMapper implements IMapper<Unit, UnitDto> {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
-                imageMapper.fromDtoToObject(dto.image())
-                );
+                imageMapper.fromDtoToObject(dto.image()),
+                dto.description()
+        );
     }
 
     @Override
@@ -42,6 +43,7 @@ public class UnitMapper implements IMapper<Unit, UnitDto> {
                 object.getCreatedAt(),
                 object.getUpdatedAt(),
                 object.getName(),
+                object.getDescription(),
                 pointMapper.fromObjectToDto(object.getLocation()),
                 object.getOrders().stream().map(AbstractBaseEntity::getId).toList(),
                 object.getOrdersHistory().stream().map(AbstractBaseEntity::getId).toList(),
@@ -67,7 +69,8 @@ public class UnitMapper implements IMapper<Unit, UnitDto> {
                 new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>(),
-                imageMapper.fromCreateRequestDtoToObject(unitCreateRequestDto.image())
+                imageMapper.fromCreateRequestDtoToObject(unitCreateRequestDto.image()),
+                unitCreateRequestDto.description()
         );
     }
 }

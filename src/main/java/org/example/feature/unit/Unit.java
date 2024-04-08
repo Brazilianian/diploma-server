@@ -16,7 +16,6 @@ import java.util.UUID;
 @Setter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "units")
 public class Unit extends AbstractBaseEntity {
@@ -40,11 +39,24 @@ public class Unit extends AbstractBaseEntity {
     @OneToOne
     private Image image;
 
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
+
     public Unit(UUID id) {
         super(id);
     }
 
-    public Unit(UUID id, String name, Point location, List<Order> orders, List<Order> ordersHistory, List<User> users, Image image) {
+    public Unit(String name, Point location, List<Order> orders, List<Order> ordersHistory, List<User> users, Image image, String description) {
+        this.name = name;
+        this.location = location;
+        this.orders = orders;
+        this.ordersHistory = ordersHistory;
+        this.users = users;
+        this.image = image;
+        this.description = description;
+    }
+
+    public Unit(UUID id, String name, Point location, List<Order> orders, List<Order> ordersHistory, List<User> users, Image image, String description) {
         super(id);
         this.name = name;
         this.location = location;
@@ -52,6 +64,7 @@ public class Unit extends AbstractBaseEntity {
         this.ordersHistory = ordersHistory;
         this.users = users;
         this.image = image;
+        this.description = description;
     }
 
     @Override

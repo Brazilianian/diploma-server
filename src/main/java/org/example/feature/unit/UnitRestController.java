@@ -55,7 +55,6 @@ public class UnitRestController {
         }
 
         Unit unit = unitMapper.fromCreateRequestDtoToObject(unitCreateRequestDto);
-//        Image image = imageService.createImage(unitCreateRequestDto.image().content());
         User user = userService.getUserFromUserPrincipal(principal);
 
         unit = unitService.createUnit(unit, user, unitCreateRequestDto.image().content());
