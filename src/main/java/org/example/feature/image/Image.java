@@ -1,5 +1,6 @@
 package org.example.feature.image;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
@@ -17,16 +18,8 @@ import java.util.UUID;
 @Setter
 public class Image extends AbstractBaseEntity {
 
-    @Lob
-    private byte[] content;
-
-    public Image(byte[] content) {
-        this.content = content;
-    }
-
-    public Image(UUID id, byte[] content) {
+    public Image(UUID id) {
         super(id);
-        this.content = content;
     }
 
     @Override

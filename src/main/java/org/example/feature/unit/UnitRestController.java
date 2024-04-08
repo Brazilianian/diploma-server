@@ -3,6 +3,8 @@ package org.example.feature.unit;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.exception.ValidationException;
+import org.example.feature.image.Image;
+import org.example.feature.image.ImageService;
 import org.example.feature.unit.dto.UnitDto;
 import org.example.feature.unit.dto.create.UnitCreateRequestDto;
 import org.example.feature.user.Role;
@@ -25,6 +27,7 @@ public class UnitRestController {
     private final UnitMapper unitMapper;
     private final UnitService unitService;
     private final UserService userService;
+    private final ImageService imageService;
 
     @GetMapping
     @ResponseBody
@@ -52,10 +55,10 @@ public class UnitRestController {
         }
 
         Unit unit = unitMapper.fromCreateRequestDtoToObject(unitCreateRequestDto);
-
+//        Image image = imageService.createImage(unitCreateRequestDto.image().content());
         User user = userService.getUserFromUserPrincipal(principal);
 
-        unit = unitService.createUnit(unit, user);
+        unit = unitService.createUnit(unit, user, unitCreateRequestDto.image().content());
         return unitMapper.fromObjectToDto(unit);
     }
 

@@ -1,6 +1,7 @@
 package org.example.feature.unit;
 
 import lombok.RequiredArgsConstructor;
+import org.example.feature.image.Image;
 import org.example.feature.image.ImageService;
 import org.example.feature.unit.exception.UnitWasNotFoundException;
 import org.example.feature.user.User;
@@ -31,9 +32,9 @@ public class UnitService {
                 ));
     }
 
-    public Unit createUnit(Unit unit, User user) {
+    public Unit createUnit(Unit unit, User user, String image) {
         unit.getUsers().add(user);
-        unit.setImage(imageService.createImage(unit.getImage()));
+        unit.setImage(imageService.createImage(image));
         Unit savedUnit = unitRepository.save(unit);
         LOGGER.info(
                 String.format("Підрозділ %s було збережено.", savedUnit)
