@@ -15,7 +15,6 @@ public record UnitCreateRequestDto(
         @NotNull(message = "Вкажіть місцезнаходження частини")
         PointCreateRequestDto location,
 
-        @NotNull(message = "Вкажіть зображення")
         @Valid
         ImageCreateRequestDto image
 ) {
