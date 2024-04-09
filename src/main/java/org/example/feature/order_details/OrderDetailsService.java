@@ -1,11 +1,14 @@
 package org.example.feature.order_details;
 
 import lombok.RequiredArgsConstructor;
+import org.example.feature.geo.point.Point;
 import org.example.feature.geo.point.PointService;
-import org.example.feature.order.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -18,8 +21,13 @@ public class OrderDetailsService {
 
     public OrderDetails createOrderDetails(OrderDetails orderDetails) {
 
-        orderDetails.setPointFrom(pointService.createPoint(orderDetails.getPointFrom()));
-        orderDetails.setPointTo(pointService.createPoint(orderDetails.getPointTo()));
+        List<Point> savedPoints = new ArrayList<>();
+
+        for (Point point : orderDetails.getPoints()) {
+            savedPoints.add(pointService.createPoint(point));
+        }
+
+        orderDetails.setPoints(savedPoints);
 
         OrderDetails createdOrderDetails = orderDetailsRepository.save(orderDetails);
         LOGGER.info(

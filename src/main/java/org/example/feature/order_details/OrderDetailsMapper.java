@@ -5,9 +5,10 @@ import org.example.feature.geo.point.PointMapper;
 import org.example.feature.order_details.dto.OrderDetailsCreateRequestDto;
 import org.example.feature.order_details.dto.OrderDetailsDto;
 import org.example.mapper.IMapper;
-import org.springframework.security.config.annotation.web.CorsDsl;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -19,9 +20,11 @@ public class OrderDetailsMapper implements IMapper<OrderDetails, OrderDetailsDto
     @Override
     public OrderDetails fromDtoToObject(OrderDetailsDto dto) {
         return new OrderDetails(
-                pointMapper.fromDtoToObject(dto.pointFrom()),
-                pointMapper.fromDtoToObject(dto.pointTo()),
-                dto.dateTimeTo()
+                pointMapper.fromDtoListToObjectList(dto.points()),
+                dto.dateTimeFrom(),
+                dto.dateTimeTo(),
+                dto.distance(),
+                dto.duration()
         );
     }
 
@@ -31,10 +34,11 @@ public class OrderDetailsMapper implements IMapper<OrderDetails, OrderDetailsDto
                 object.getId(),
                 object.getCreatedAt(),
                 object.getUpdatedAt(),
-                pointMapper.fromObjectToDto(object.getPointFrom()),
-                pointMapper.fromObjectToDto(object.getPointTo()),
+                pointMapper.fromObjectListToDtoList(object.getPoints()),
                 object.getDateTimeTo(),
-                object.getDistance()
+                object.getDateTimeTo(),
+                object.getDistance(),
+                object.getDuration()
         );
     }
 
@@ -50,9 +54,11 @@ public class OrderDetailsMapper implements IMapper<OrderDetails, OrderDetailsDto
 
     public OrderDetails fromCreateRequestDtoToObject(OrderDetailsCreateRequestDto orderDetailsCreateRequestDto) {
         return new OrderDetails(
-                pointMapper.fromCreateRequestDtoToObject(orderDetailsCreateRequestDto.pointFrom()),
-                pointMapper.fromCreateRequestDtoToObject(orderDetailsCreateRequestDto.pointTo()),
-                orderDetailsCreateRequestDto.dateTimeTo()
+                orderDetailsCreateRequestDto.points().stream().map(pointMapper::fromCreateRequestDtoToObject).toList(),
+                LocalDate.parse(orderDetailsCreateRequestDto.dateTimeFrom()),
+                LocalDate.parse(orderDetailsCreateRequestDto.dateTimeTo()),
+                orderDetailsCreateRequestDto.distance(),
+                orderDetailsCreateRequestDto.duration()
         );
     }
 }

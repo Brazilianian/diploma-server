@@ -3,27 +3,31 @@ package org.example.feature.order;
 import lombok.RequiredArgsConstructor;
 import org.example.feature.order.dto.OrderCreateRequestDto;
 import org.example.feature.order.dto.OrderDto;
+import org.example.feature.orderItem.OrderItemMapper;
 import org.example.feature.order_details.OrderDetailsMapper;
 import org.example.feature.unit.Unit;
 import org.example.mapper.IMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class OrderMapper implements IMapper<Order, OrderDto> {
 
+    private final OrderItemMapper orderItemMapper;
     private final OrderDetailsMapper orderDetailsMapper;
 
     @Override
-
     public Order fromDtoToObject(OrderDto dto) {
         // ми не будемо змінювати unit, тому він null
         return new Order(
                 null,
                 dto.orderStatus(),
-                orderDetailsMapper.fromDtoToObject(dto.orderDetailsDto())
+                orderDetailsMapper.fromDtoToObject(dto.orderDetailsDto()),
+                dto.name(),
+                orderItemMapper.fromDtoListToObjectList(dto.items())
         );
     }
 
@@ -32,6 +36,8 @@ public class OrderMapper implements IMapper<Order, OrderDto> {
         return new OrderDto(
                 object.getId(),
                 object.getUnit().getId(),
+                object.getName(),
+                orderItemMapper.fromObjectListToDtoList(object.getItems()),
                 object.getCreatedAt(),
                 object.getUpdatedAt(),
                 object.getOrderStatus(),

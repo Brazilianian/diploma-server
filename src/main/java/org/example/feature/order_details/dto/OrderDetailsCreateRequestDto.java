@@ -6,16 +6,16 @@ import org.example.annotation.FutureOrPresent;
 import org.example.feature.geo.point.dto.PointCreateRequestDto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record OrderDetailsCreateRequestDto(
-        @NotNull(message = "Вкажіть точку старту")
         @Valid
-        PointCreateRequestDto pointFrom,
-        @NotNull(message = "Вкажіть місце прибуття")
-        @Valid
-        PointCreateRequestDto pointTo,
+        List<PointCreateRequestDto> points,
         @NotNull(message = "Дата прибуття не може бути пустою")
-        @FutureOrPresent(message = "Дата на може бути минулою")
-        LocalDateTime dateTimeTo
+        String dateTimeFrom,
+        @NotNull(message = "Дата прибуття не може бути пустою")
+        String dateTimeTo,
+        String distance,
+        String duration
 ) {
 }
