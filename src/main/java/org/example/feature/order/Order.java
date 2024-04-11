@@ -34,9 +34,11 @@ public class Order extends AbstractBaseEntity {
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> items = new ArrayList<>();
 
-    public Order(Unit unit, OrderDetails orderDetails) {
+    public Order(Unit unit, OrderDetails orderDetails, String name, List<OrderItem> items) {
         this.unit = unit;
         this.orderDetails = orderDetails;
+        this.name = name;
+        this.items = items;
     }
 
     @Override

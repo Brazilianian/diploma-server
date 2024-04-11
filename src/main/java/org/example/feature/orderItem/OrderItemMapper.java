@@ -1,5 +1,6 @@
 package org.example.feature.orderItem;
 
+import org.example.feature.orderItem.dto.OrderItemCreateRequestDto;
 import org.example.feature.orderItem.dto.OrderItemDto;
 import org.example.mapper.IMapper;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class OrderItemMapper implements IMapper<OrderItem, OrderItemDto> {
                 object.getDescription(),
                 object.getCreatedAt(),
                 object.getUpdatedAt()
-                );
+        );
     }
 
     @Override
@@ -35,5 +36,9 @@ public class OrderItemMapper implements IMapper<OrderItem, OrderItemDto> {
     @Override
     public List<OrderItemDto> fromObjectListToDtoList(List<OrderItem> objectList) {
         return objectList.stream().map(this::fromObjectToDto).toList();
+    }
+
+    public OrderItem fromCreateRequestDtoToObject(OrderItemCreateRequestDto orderItemCreateRequestDto) {
+        return new OrderItem(orderItemCreateRequestDto.name(), orderItemCreateRequestDto.description());
     }
 }

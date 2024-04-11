@@ -58,7 +58,9 @@ public class OrderMapper implements IMapper<Order, OrderDto> {
     public Order fromCreateRequestDtoToObject(OrderCreateRequestDto orderCreateRequestDto) {
         return new Order(
                 new Unit(orderCreateRequestDto.unitId()),
-                orderDetailsMapper.fromCreateRequestDtoToObject(orderCreateRequestDto.orderDetailsCreateRequestDto())
+                orderDetailsMapper.fromCreateRequestDtoToObject(orderCreateRequestDto.orderDetailsCreateRequestDto()),
+                orderCreateRequestDto.name(),
+                orderCreateRequestDto.items().stream().map(orderItemMapper::fromCreateRequestDtoToObject).toList()
         );
     }
 }
