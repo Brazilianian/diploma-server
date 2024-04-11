@@ -72,4 +72,12 @@ public class OrderService {
     private boolean isOrderExistsById(UUID id) {
         return orderRepository.existsById(id);
     }
+
+    public void deleteOrdersForUnit(UUID uuid) {
+        Unit unit = unitService.getUnitById(uuid);
+        for (Order order : unit.getOrders()) {
+            order.setUnit(null);
+            orderRepository.save(order);
+        }
+    }
 }

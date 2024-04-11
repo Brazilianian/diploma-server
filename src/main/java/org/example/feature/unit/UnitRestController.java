@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.exception.ValidationException;
 import org.example.feature.image.Image;
 import org.example.feature.image.ImageService;
+import org.example.feature.order.OrderService;
 import org.example.feature.unit.dto.UnitDto;
 import org.example.feature.unit.dto.create.UnitCreateRequestDto;
 import org.example.feature.user.Role;
@@ -27,7 +28,7 @@ public class UnitRestController {
     private final UnitMapper unitMapper;
     private final UnitService unitService;
     private final UserService userService;
-    private final ImageService imageService;
+    private final OrderService orderService;
 
     @GetMapping
     @ResponseBody
@@ -64,6 +65,7 @@ public class UnitRestController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUnit(@PathVariable("id") String id) {
+        orderService.deleteOrdersForUnit(UUID.fromString(id));
         unitService.deleteUnitById(UUID.fromString(id));
     }
 }

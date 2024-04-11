@@ -6,6 +6,7 @@ import org.example.entity.AbstractBaseEntity;
 import org.example.feature.orderItem.OrderItem;
 import org.example.feature.order_details.OrderDetails;
 import org.example.feature.unit.Unit;
+import org.hibernate.annotations.Cascade;
 
 import java.util.ArrayList;
 import java.util.List;
