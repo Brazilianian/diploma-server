@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.entity.AbstractBaseEntity;
 import org.example.feature.auth.token.Token;
+import org.example.feature.image.Image;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,6 +32,9 @@ public class User extends AbstractBaseEntity implements UserDetails {
 
     @Column(name = "password")
     private String password;
+
+    @OneToOne
+    private Image image;
 
     @Column(name = "role")
     @Enumerated(EnumType.ORDINAL)
@@ -67,6 +71,12 @@ public class User extends AbstractBaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User(String firstName, String lastName, Image image) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.image = image;
     }
 
     public User(UUID id, String firstName, String lastName, String email, String password, Role role, List<Token> tokens) {

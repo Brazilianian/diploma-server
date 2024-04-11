@@ -1,4 +1,4 @@
-package org.example.feature.user.dto.create;
+package org.example.feature.user.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;

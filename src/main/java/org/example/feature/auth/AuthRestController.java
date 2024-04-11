@@ -8,7 +8,7 @@ import org.example.feature.auth.dto.AuthRequestDto;
 import org.example.feature.auth.dto.AuthResponseDto;
 import org.example.exception.ValidationException;
 import org.example.feature.user.dto.UserDto;
-import org.example.feature.user.dto.create.UserCreateRequestDto;
+import org.example.feature.user.dto.UserCreateRequestDto;
 import org.example.feature.user.User;
 import org.example.feature.user.UserMapper;
 import org.example.service.AuthService;
