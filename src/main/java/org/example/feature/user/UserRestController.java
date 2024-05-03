@@ -6,7 +6,6 @@ import org.example.exception.ValidationException;
 import org.example.feature.user.dto.UserDto;
 import org.example.feature.user.dto.UserUpdateRequestDto;
 import org.example.feature.user.dto.UserValidateDto;
-import org.example.service.UserService;
 import org.example.util.ValidationUtil;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

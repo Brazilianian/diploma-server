@@ -1,4 +1,4 @@
-package org.example.service;
+package org.example.feature.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.example.feature.user.User;

@@ -12,7 +12,7 @@ import org.example.feature.user.dto.UserCreateRequestDto;
 import org.example.feature.user.User;
 import org.example.feature.user.UserMapper;
 import org.example.service.AuthService;
-import org.example.service.UserService;
+import org.example.feature.user.UserService;
 import org.example.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

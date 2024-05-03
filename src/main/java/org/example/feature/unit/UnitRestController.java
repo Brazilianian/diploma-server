@@ -3,17 +3,13 @@ package org.example.feature.unit;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.exception.ValidationException;
-import org.example.feature.image.Image;
-import org.example.feature.image.ImageService;
 import org.example.feature.order.OrderService;
 import org.example.feature.unit.dto.UnitDto;
 import org.example.feature.unit.dto.create.UnitCreateRequestDto;
-import org.example.feature.user.Role;
 import org.example.feature.user.User;
-import org.example.service.UserService;
+import org.example.feature.user.UserService;
 import org.example.util.ValidationUtil;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
