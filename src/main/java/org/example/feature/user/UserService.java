@@ -2,6 +2,8 @@ package org.example.feature.user;
 
 import lombok.RequiredArgsConstructor;
 import org.example.feature.image.ImageService;
+import org.example.feature.image.dto.ImageCreateRequestDto;
+import org.example.feature.image.dto.ImageDto;
 import org.example.feature.user.exception.UserAlreadyExistsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,10 +43,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User updateUser(User user, User userInfoToUpdate, String image) {
+    public User updateUser(User user, User userInfoToUpdate, ImageCreateRequestDto image) {
         user.setFirstName(userInfoToUpdate.getFirstName());
         user.setLastName(userInfoToUpdate.getLastName());
-        user.setImage(imageService.createImage(image));
+
+        if (image != null) {
+            user.setImage(imageService.createImage(image.content()));
+        }
 
         User savedUser = userRepository.save(user);
         LOGGER.info(

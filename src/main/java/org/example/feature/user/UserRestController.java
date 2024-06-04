@@ -48,7 +48,7 @@ public class UserRestController {
         User user = userService.getUserFromUserPrincipal(userPrincipal);
         User userInfoToUpdate = userMapper.fromUpdateRequestDtoToObject(userUpdateRequestDto);
 
-        User updatedUser = userService.updateUser(user, userInfoToUpdate, userUpdateRequestDto.image().content());
+        User updatedUser = userService.updateUser(user, userInfoToUpdate, userUpdateRequestDto.image());
         return userMapper.fromObjectToDto(updatedUser);
     }
 }
